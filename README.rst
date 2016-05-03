@@ -29,16 +29,16 @@ Inside that folder, run the development server with::
 
     $ clay run
 
-and your site'll be available at ``http://0.0.0.0:8080/``.
+and your site'll be available at ``http://127.0.0.1:8080/``.
 
 Anything you put under ``source`` will be render as a page. For instance,
 ``source/page.html`` will be visible at::
 
-    http://0.0.0.0:8080/page.html
+    http://127.0.0.1:8080/page.html
 
 and ``source/foo/bar.json`` at::
 
-    http://0.0.0.0:8080/foo/bar.json
+    http://127.0.0.1:8080/foo/bar.json
 
 
 To generate a static version of your site, stop the server (with
