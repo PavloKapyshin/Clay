@@ -166,8 +166,8 @@ def test_show__index_txt(t):
     assert resp.mimetype == 'text/plain'
 
     page = resp.data
-    assert 'http://0.0.0.0:8080/aaa.html' in page
-    assert 'http://0.0.0.0:8080/bbb/ccc.html' in page
+    assert 'http://127.0.0.1:8080/aaa.html' in page
+    assert 'http://127.0.0.1:8080/bbb/ccc.html' in page
     assert 'href="aaa.html"' not in page
     assert 'lalala.txt' not in page
 

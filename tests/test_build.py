@@ -289,18 +289,18 @@ def test_build__index_txt(c):
 
     bpindex = get_build_path('_index.txt')
     page = read_content(bpindex)
-    assert page.find('http://0.0.0.0:8080/aaa.html') \
-        < page.find('http://0.0.0.0:8080/ddd.html')
-    assert page.find('http://0.0.0.0:8080/ddd.html') \
-        < page.find('http://0.0.0.0:8080/eee.html')
-    assert page.find('http://0.0.0.0:8080/eee.html') \
-        < page.find('http://0.0.0.0:8080/bbb/aa.html')
-    assert page.find('http://0.0.0.0:8080/bbb/aa.html') \
-        < page.find('http://0.0.0.0:8080/bbb/bb.html')
-    assert page.find('http://0.0.0.0:8080/bbb/bb.html') \
-        < page.find('http://0.0.0.0:8080/bbb/ccc.html')
-    assert page.find('http://0.0.0.0:8080/bbb/ccc.html') \
-        < page.find('http://0.0.0.0:8080/bbb/zz.html')
+    assert page.find('http://127.0.0.1:8080/aaa.html') \
+        < page.find('http://127.0.0.1:8080/ddd.html')
+    assert page.find('http://127.0.0.1:8080/ddd.html') \
+        < page.find('http://127.0.0.1:8080/eee.html')
+    assert page.find('http://127.0.0.1:8080/eee.html') \
+        < page.find('http://127.0.0.1:8080/bbb/aa.html')
+    assert page.find('http://127.0.0.1:8080/bbb/aa.html') \
+        < page.find('http://127.0.0.1:8080/bbb/bb.html')
+    assert page.find('http://127.0.0.1:8080/bbb/bb.html') \
+        < page.find('http://127.0.0.1:8080/bbb/ccc.html')
+    assert page.find('http://127.0.0.1:8080/bbb/ccc.html') \
+        < page.find('http://127.0.0.1:8080/bbb/zz.html')
 
 
 def test_do_not_include_non_template_files_in__index(c):

@@ -6,7 +6,7 @@ from os.path import sep, abspath
 import baker
 from voodoo import render_skeleton
 
-from .main import Clay, DEFAULT_HOST, DEFAULT_PORT
+from .main import Clay
 
 
 DEFAULT_TEMPLATE_URL = 'https://github.com/lucuma/clay-template.git'
@@ -41,7 +41,7 @@ def new(path='.', template=None):
 
 
 @manager.command
-def run(host=DEFAULT_HOST, port=DEFAULT_PORT, path='.'):
+def run(host=None, port=None, path='.'):
     """Run the development server
     """
     path = abspath(path)
@@ -50,7 +50,7 @@ def run(host=DEFAULT_HOST, port=DEFAULT_PORT, path='.'):
 
 
 # @manager.command
-# def debug(host=DEFAULT_HOST, port=DEFAULT_PORT, path='.'):
+# def debug(host=None, port=None, path='.'):
 #     """Like 'Run' but starting pudb on error
 #     """
 #     import sys

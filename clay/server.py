@@ -8,8 +8,7 @@ import sys
 from cherrypy import wsgiserver
 
 
-ALL_HOSTS = '0.0.0.0'
-DEFAULT_HOST = ALL_HOSTS
+DEFAULT_HOST = '127.0.0.1'
 DEFAULT_PORT = 8080
 MAX_PORT_DELTA = 10
 
@@ -28,9 +27,9 @@ class Server(object):
         app = RequestLogger(clay.app)
         self.dispatcher = wsgiserver.WSGIPathInfoDispatcher({'/': app})
 
-    def run(self, host=DEFAULT_HOST, port=DEFAULT_PORT):
-        port = port or self.clay.settings.get('port', DEFAULT_PORT)
-        host = host or self.clay.settings.get('host', DEFAULT_HOST)
+    def run(self, host=None, port=None):
+        host = host or self.clay.settings.get('HOST', DEFAULT_HOST)
+        port = int(port or self.clay.settings.get('PORT', DEFAULT_PORT))
         max_port = port + MAX_PORT_DELTA
         print(WELCOME)
         return self._testrun(host, port, max_port)
@@ -66,11 +65,7 @@ class Server(object):
         self.server.stop()
 
     def print_help_msg(self, host, port):
-        if host == ALL_HOSTS:
-            print(RUNNING_ON % ('localhost', port))
-            local_ip = get_local_ip()
-            if local_ip:
-                print(RUNNING_ON % (local_ip, port))
+        print(RUNNING_ON % (host, port))
         print(HOW_TO_QUIT)
 
 
@@ -102,13 +97,3 @@ class RequestLogger(object):
                 sys.exc_info()
             )
             raise
-
-
-def get_local_ip():
-    try:
-        interfaces = socket.gethostbyname_ex(socket.gethostname())[-1]
-    except socket.gaierror:
-        return
-    for ip in interfaces:
-        if ip.startswith('192.'):
-            return ip
